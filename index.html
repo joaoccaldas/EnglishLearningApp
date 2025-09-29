@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Spelling Master</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 English Spelling Master</h1>
+            <p>Learn spelling and writing through fun games!</p>
+            
+            <!-- Player Progress Display -->
+            <div class="player-progress">
+                <div class="progress-stats">
+                    <span class="total-level">Level: <span id="total-level">1</span></span>
+                    <span class="total-points">Points: <span id="total-points">0</span></span>
+                    <span class="total-coins">💰 <span id="coins">0</span></span>
+                </div>
+                <div class="level-progress-container">
+                    <div class="level-progress-bar">
+                        <div id="level-progress" class="level-progress-fill"></div>
+                    </div>
+                    <span class="progress-label">Progress to next level</span>
+                </div>
+                
+                <!-- Inventory Display -->
+                <div class="inventory-section">
+                    <span class="inventory-label">Inventory:</span>
+                    <div id="inventory-display" class="inventory-display"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="game-board">
+            <!-- Game Mode Selection -->
+            <div id="mode-selection" class="section">
+                <!-- World Selection -->
+                <div class="world-selection">
+                    <h2>🌍 Choose Your World</h2>
+                    <div id="world-selector" class="world-selector">
+                        <!-- World buttons will be dynamically generated -->
+                    </div>
+                </div>
+                
+                <h2>Choose Your Game Mode</h2>
+                <div class="mode-buttons">
+                    <button class="mode-btn" onclick="startGame('spelling')">
+                        🇸🇪→🇬🇧 Swedish to English
+                    </button>
+                    <button class="mode-btn" onclick="startGame('writing')">
+                        ✍️ Word Building
+                    </button>
+                    <button class="mode-btn" onclick="startGame('definition')">
+                        🔍 Definition Match
+                    </button>
+                    <button class="mode-btn" onclick="startGame('quickfire')">
+                        ⚡ Quick Fire
+                    </button>
+                    <button class="mode-btn" onclick="startGame('phrases')">
+                        📚 Phrase Building
+                    </button>
+                </div>
+                
+                <div class="difficulty-selection">
+                    <h3>Select Difficulty:</h3>
+                    <label>
+                        <input type="radio" name="difficulty" value="beginner">
+                        Beginner (2-3 letters)
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="easy" checked>
+                        Easy (3-5 letters)
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="medium">
+                        Medium (6-8 letters)
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="hard">
+                        Hard (9-12 letters)
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="expert">
+                        Expert (12+ letters)
+                    </label>
+                </div>
+                
+                <!-- Shop Access -->
+                <div class="shop-access">
+                    <button class="shop-access-btn" onclick="showShop()">
+                        🛒 Visit Shop
+                        <div class="shop-coins-display">💰 <span id="menu-coins">0</span></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Area -->
+            <div id="game-area" class="section hidden">
+                <div class="game-header">
+                    <div class="score-board">
+                        <span class="score">Score: <span id="score">0</span></span>
+                        <span class="streak">Streak: <span id="streak">0</span></span>
+                        <span class="level">Level: <span id="level">1</span></span>
+                    </div>
+                    <button id="back-btn" onclick="showModeSelection()">← Back to Menu</button>
+                </div>
+
+                <!-- Current Word Display -->
+                <div class="word-display">
+                    <div id="word-container">
+                        <h2 id="current-word">_ _ _ _ _</h2>
+                        <div id="word-hint" class="hint"></div>
+                        <div id="word-definition" class="definition"></div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <input type="text" id="user-input" placeholder="Type your answer here..." maxlength="20">
+                    <button id="submit-btn" onclick="checkAnswer()">Submit</button>
+                    <button id="hint-btn" onclick="showHint()">💡 Hint</button>
+                    <button id="hint-stick-btn" onclick="useHintStick()">🔮 Super Hint</button>
+                    <button id="time-freeze-btn" onclick="useTimeFreeze()">⏸️ Freeze</button>
+                    <button id="skip-btn" onclick="skipWord()">⏭️ Skip</button>
+                </div>
+
+                <!-- Feedback Area -->
+                <div id="feedback" class="feedback"></div>
+
+                <!-- Progress Area -->
+                <div class="progress-area">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <p>Words completed: <span id="words-completed">0</span> / <span id="words-total">10</span></p>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-screen" class="section hidden">
+                <div class="results-content">
+                    <h2>🎉 Game Complete!</h2>
+                    <div class="final-stats">
+                        <div class="stat">
+                            <span class="stat-label">Final Score:</span>
+                            <span class="stat-value" id="final-score">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Accuracy:</span>
+                            <span class="stat-value" id="final-accuracy">0%</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Best Streak:</span>
+                            <span class="stat-value" id="final-streak">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="action-btn" onclick="playAgain()">🔄 Play Again</button>
+                        <button class="action-btn" onclick="showShop()">🛒 Shop</button>
+                        <button class="action-btn" onclick="showModeSelection()">🏠 Main Menu</button>
+                    </div>
+
+                    <div class="improvement-tips">
+                        <h3>💡 Tips for Improvement:</h3>
+                        <ul id="tips-list">
+                            <li>Practice common word patterns</li>
+                            <li>Read more to expand vocabulary</li>
+                            <li>Use the hint feature to learn new words</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Screen -->
+            <div id="shop-screen" class="section hidden">
+                <div class="shop-header">
+                    <h2>🛒 Power-Up Shop</h2>
+                    <div class="shop-balance">
+                        Your Balance: 💰 <span id="shop-coins">0</span> coins
+                    </div>
+                    <button id="shop-back-btn" onclick="showModeSelection()">← Back to Menu</button>
+                </div>
+
+                <div class="shop-content">
+                    <div class="shop-categories">
+                        <h3>🎯 Available Items</h3>
+                        <p>Purchase helpful items to boost your learning experience!</p>
+                    </div>
+                    
+                    <div id="shop-items" class="shop-items-grid">
+                        <!-- Shop items will be dynamically generated -->
+                    </div>
+
+                    <div class="shop-info">
+                        <h3>💡 How to Earn Coins</h3>
+                        <ul>
+                            <li>🆙 Level up to earn coins automatically</li>
+                            <li>📈 Higher levels give more coins</li>
+                            <li>🏆 Complete games to gain experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Keep practicing to improve your English spelling skills! 🌟</p>
+        </footer>
+    </div>
+
+    <script src="js/world.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
