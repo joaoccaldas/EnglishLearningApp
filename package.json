@@ -1,0 +1,10 @@
+{
+  "name": "wordbound-whispering-woods",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/engine-smoke.mjs",
+    "check": "node --check js/wordbound/data.js && node --check js/wordbound/engine.js && node --check js/wordbound/app.js && node --check service-worker.js"
+  }
+}
