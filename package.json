@@ -5,6 +5,6 @@
   "type": "module",
   "scripts": {
     "test": "node tests/engine-smoke.mjs",
-    "check": "node --check js/wordbound/data.js && node --check js/wordbound/engine.js && node --check js/wordbound/app.js && node --check service-worker.js"
+    "check": "node --check js/wordbound/data.js && node --check js/wordbound/engine.js && node --check js/wordbound/app.js && node --check js/wordbound/safety.js && node --check service-worker.js"
   }
 }
