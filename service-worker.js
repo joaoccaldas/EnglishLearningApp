@@ -1,13 +1,16 @@
-const CACHE = 'wordbound-whispering-woods-v2';
+const CACHE = 'wordbound-whispering-woods-v3';
 const SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
   './css/wordbound.css',
+  './css/retention.css',
   './js/wordbound/data.js',
   './js/wordbound/engine.js',
   './js/wordbound/app.js',
   './js/wordbound/safety.js',
+  './js/wordbound/review.js',
+  './js/wordbound/retention.js',
   './assets/wordbound-mark.svg',
   './assets/whispering-woods.svg'
 ];
@@ -31,7 +34,6 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const { request } = event;
   if (request.method !== 'GET') return;
-
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
