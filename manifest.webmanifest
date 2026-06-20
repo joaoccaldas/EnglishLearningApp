@@ -1,0 +1,16 @@
+{
+  "name": "Wordbound: Whispering Woods",
+  "short_name": "Wordbound",
+  "description": "A story-driven English learning adventure for Swedish speakers.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b1613",
+  "theme_color": "#101b19",
+  "categories": ["education", "games", "family"],
+  "icons": [
+    {"src":"assets/wordbound-mark.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
