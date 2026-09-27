@@ -34,3 +34,9 @@ All progress stays in browser storage. Wordbound contains no accounts, advertisi
 ## Deployment
 
 The application is static and can be served directly through GitHub Pages.
+
+## Project context
+
+This is a personal, self-directed learning project by João Caldas. I use projects like this to learn software engineering, product design, learning-system design, and AI-assisted development by building and testing real ideas.
+
+AI tools are used extensively during research, design, coding, debugging, testing, and documentation. AI-generated suggestions are treated as inputs to review, not proof of correctness; important learning logic and user-facing behavior should be tested and documented.
